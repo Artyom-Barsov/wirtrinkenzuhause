@@ -6,3 +6,5 @@
 detection.py выделяет строения на белым цветом на чёрном фоне.
 
 Пример работы: до / после ![](https://github.com/Artyom-Barsov/wirtrinkenzuhause/blob/master/images/detect.png?raw=true)
+![](https://github.com/Artyom-Barsov/wirtrinkenzuhause/blob/master/images/detect2.png?raw=true)
+![](https://github.com/Artyom-Barsov/wirtrinkenzuhause/blob/master/images/detect3.png?raw=true)
