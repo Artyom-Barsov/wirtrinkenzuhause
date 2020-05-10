@@ -3,13 +3,29 @@ import sys
 import numpy as np
 import queue
 
+components = []
+
 def bfs(mask, x, y):
     pixels = queue.Queue()
     pixels.put((x, y))
-    while !pixels.empty():
-        newx, newy = pixels.pop()
-        if newx > 0 and newx < len(mask[0]) and newy > 0 and newy < len(mask):
-            pixels.push((newx, newy))
+    miny, maxy, minx, maxx = len(mask), 0, len(mask[0]), 0
+    while not pixels.empty():
+        newx, newy = pixels.get()
+        mask[newy][newx] = 0
+        minx = min(minx, newx)
+        maxx = max(maxx, newx)
+        miny = min(miny, newy)
+        maxy = max(maxy, newy)
+        if newx-1 > 0 and newx-1 < len(mask[0]) and newy-1 > 0 and newy-1 < len(mask) and mask[newy-1][newx-1] == 255:
+            pixels.put((newx-1, newy-1))
+        if newx+1 > 0 and newx+1 < len(mask[0]) and newy-1 > 0 and newy-1 < len(mask) and mask[newy-1][newx+1] == 255:
+            pixels.put((newx+1, newy-1))
+        if newx-1 > 0 and newx-1 < len(mask[0]) and newy+1 > 0 and newy+1 < len(mask) and mask[newy+1][newx-1] == 255:
+            pixels.put((newx-1, newy+1))
+        if newx+1 > 0 and newx+1 < len(mask[0]) and newy+1 > 0 and newy+1 < len(mask) and mask[newy+1][newx+1] == 255:
+            pixels.put((newx+1, newy+1))
+
+    components.append((miny, maxy, minx, maxx))
 
 def suchen(mask):
     for i in range(len(mask)):
